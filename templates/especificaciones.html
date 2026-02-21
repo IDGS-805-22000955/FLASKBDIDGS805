@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block container %}
+<div class="w-full max-w-6xl p-6">
+  <div class="mb-4 flex items-center justify-between gap-3">
+    <h1 class="text-2xl font-semibold text-heading">Listado de Alumnos</h1>
+    <a
+      href="{{ url_for('alumnos') }}"
+      class="inline-flex items-center rounded-base border border-transparent bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-strong"
+    >
+      Agregar
+    </a>
+  </div>
+
+  <div
+    class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default"
+  >
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+      <thead
+        class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3 font-medium">ID</th>
+          <th scope="col" class="px-6 py-3 font-medium">Nombre</th>
+          <th scope="col" class="px-6 py-3 font-medium">Apellido</th>
+          <th scope="col" class="px-6 py-3 font-medium">Email</th>
+          <th scope="col" class="px-6 py-3 font-medium">Fecha Registro</th>
+          <th scope="col" class="px-6 py-3 font-medium">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for alumno in alumnos %}
+        <tr class="bg-neutral-primary border-b border-default">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-heading whitespace-nowrap"
+          >
+            {{ alumno.id }}
+          </th>
+          <td class="px-6 py-4">{{ alumno.nombre }}</td>
+          <td class="px-6 py-4">{{ alumno.apaterno }}</td>
+          <td class="px-6 py-4">{{ alumno.email }}</td>
+          <td class="px-6 py-4">{{ alumno.creted_date }}</td>
+          <td class="px-6 py-4">
+            <div class="flex flex-wrap gap-2">
+              <a
+                href="#"
+                class="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Editar
+              </a>
+
+              <a
+                href="#"
+                class="rounded-md bg-red-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-red-700 transition-colors"
+              >
+                Eliminar
+              </a>
+              <a
+                href="detalles?id={{ alumno.id }}"
+                class="rounded-base border border-default px-3 py-1 text-xs font-medium text-heading hover:bg-neutral-secondary-soft"
+              >
+                Detalles
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% else %}
+        <tr class="bg-neutral-primary">
+          <td class="px-6 py-4 text-center" colspan="6">
+            No hay registros de alumnos.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
