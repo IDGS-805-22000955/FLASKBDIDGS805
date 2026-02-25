@@ -30,38 +30,10 @@
                 </div>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                        Registrar Alumno
+                        Editar Alumno
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-<div class="max-w-4xl mx-auto mt-12">
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <div class="px-6 py-4">
-            <h2 class="text-2xl font-bold text-gray-800">Registros de Alumnos</h2>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Nombre</th>
-                        <th scope="col" class="px-6 py-3">Apellido</th>
-                        <th scope="col" class="px-6 py-3">Correo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for alum in alumnos %}
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{alum.nombre}}</td>
-                        <td class="px-6 py-4">{{alum.apellidos}}</td>
-                        <td class="px-6 py-4">{{alum.correo}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

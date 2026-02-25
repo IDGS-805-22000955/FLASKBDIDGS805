@@ -1,109 +1,93 @@
-{% extends "layout.html" %} {% block container %}
-<div class="group py-32 relative overflow-x-auto sm:rounded-lg">
-  <div
-    class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs"
-  >
-    <button
-      id="dropdownButton"
-      data-dropdown-toggle="dropdown"
-      class="absolute top-2 end-2 text-body hover:text-heading bg-neutral-primary-soft box-border border border-transparent hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary rounded-base p-1.5 focus:outline-none"
-      type="button"
-    >
-      <span class="sr-only">Open dropdown</span>
-      <svg
-        class="w-6 h-6"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-width="3"
-          d="M6 12h.01m6 0h.01m5.99 0h.01"
-        />
-      </svg>
-    </button>
-    <!-- Dropdown menu -->
-    <div
-      id="dropdown"
-      class="z-10 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-36 block hidden"
-    >
-      <ul
-        class="p-2 text-sm text-body font-medium"
-        aria-labelledby="dropdownButton"
-      >
-        <li>
-          <a
-            href="#"
-            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md"
-            >Edit</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md"
-            >Export Data</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="inline-flex items-center w-full p-2 text-fg-danger hover:bg-neutral-tertiary-medium rounded-md"
-            >Delete</a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="flex flex-col items-center">
-      <img
-        class="w-24 h-24 mb-6 rounded-full"
-        src="{{url_for('static',filename='img/ALVARO.jpg')}}"
-        alt="Bonnie image"
-      />
-      <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading">
-        Nombre: {{nombre}} {{apaterno}}
-      </h5>
-      <h3 class="mb-2 text-2xl font-semibold tracking-tight text-heading">
-        Correo: {{email}}
-      </h3>
-      <!-- <span class="text-sm text-body">Visual Designer</span> -->
-      <div class="flex mt-4 md:mt-6 gap-4">
-        <a
-          href="index"
-          class="inline-flex items-center rounded-base border border-transparent bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-strong"
-        >
-          <svg
-            class="w-4 h-4 me-1.5 -ms-0.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            />
-          </svg>
-          Regresar
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="container mx-auto px-4 mt-10">
+
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Directorio de Alumnos</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Gestiona los registros, edita o visualiza la información a detalle.</p>
+        </div>
+        <a href="Alumnos" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 transition transform hover:-translate-y-0.5 shadow-lg">
+            <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+            Nuevo Alumno
         </a>
-        <!-- <button
-          type="button"
-          class="inline-flex self-start w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-        >
-          Message
-        </button> -->
-      </div>
     </div>
-  </div>
+
+    <div class="relative overflow-x-auto shadow-2xl sm:rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-300 border-b dark:border-gray-700">
+                <tr>
+                    <th scope="col" class="px-6 py-4 font-bold tracking-wider">ID</th>
+                    <th scope="col" class="px-6 py-4 font-bold tracking-wider">Nombre Completo</th>
+                    <th scope="col" class="px-6 py-4 font-bold tracking-wider">Email</th>
+                    <th scope="col" class="px-6 py-4 font-bold tracking-wider">Telefono</th>
+                    <th scope="col" class="px-6 py-4 font-bold tracking-wider">Registro</th>
+                    <th scope="col" class="px-6 py-4 text-center font-bold tracking-wider">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno in alumnos %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-200 group">
+
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2.5 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+                            #{{ alumno.id }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                        {{ alumno.nombre }} {{ alumno.apellidos }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-md dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                            {{ alumno.correo }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-md dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                            {{ alumno.telefono }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">
+                        {{ alumno.created_at }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center items-center space-x-2 opacity-90 group-hover:opacity-100 transition-opacity">
+
+                            <a href="/detalles?id={{ alumno.id }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 shadow-sm transition">
+                                Detalles
+                            </a>
+
+                            <a href="/modificar?id={{ alumno.id }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 shadow-sm transition">
+                                Editar
+                            </a>
+
+                            <a href="/eliminar?id={{ alumno.id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro de forma permanente?');" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 shadow-sm transition">
+                                Borrar
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 bg-gray-50 dark:bg-gray-800/50">
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full p-3 mb-4">
+                                <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                            </div>
+                            <p class="text-lg font-medium text-gray-900 dark:text-white">Aún no hay alumnos</p>
+                            <p class="text-sm mt-1">Comienza agregando un nuevo registro al sistema.</p>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %} </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
