@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% import "_macros.html" as macros %}
+
+{% block container %}
+<div class="container mx-auto mt-12">
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Editar Alumno</h2>
+                <form action="{{ url_for('alumnos.editar', id=alumno.id) }}" method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="mb-4">
+                        {{ macros.render_field(form.nombre, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Nombre") }}
+                    </div>
+                    <div class="mb-4">
+                        {{ macros.render_field(form.apaterno, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Apellidos") }}
+                    </div>
+                    <div class="mb-4">
+                        {{ macros.render_field(form.correo, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Correo") }}
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="{{ url_for('alumnos.listar') }}" class="bg-gray-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-gray-600 mr-4">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-blue-700">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

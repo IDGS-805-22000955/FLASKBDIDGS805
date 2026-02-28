@@ -17,3 +17,18 @@ class UserForm2(FlaskForm):
         validators.Email(message="Ingresa un correo valido")
     ])
 
+class MaestroForm(FlaskForm):
+    matricula=IntegerField('matricula')
+    nombre=StringField("Nombre",[
+        validators.DataRequired(message="El campo es requerido"),
+        validators.length(min=4, max=50, message="Ingrese un nombre valido")
+    ])
+    apellidos=StringField("Apellidos",[
+        validators.DataRequired(message="El campo es requerido")
+    ])
+    especialidad=StringField("Especialidad",[
+        validators.DataRequired(message="El campo es requerido")
+    ])
+    correo=EmailField("Correo", [
+        validators.Email(message="Ingresa un correo valido")
+    ])
