@@ -35,7 +35,7 @@
                             {{ macros.render_field(form.apaterno, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Apellidos") }}
                         </div>
                         <div class="mb-4">
-                            {{ macros.render_field(form.correo, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Correo") }}
+                            {{ macros.render_field(form.email, class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder="Correo") }}
                         </div>
                         <div class="flex justify-end">
                             <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-blue-700">
@@ -64,8 +64,8 @@
                             <tr class="bg-white border-b hover:bg-gray-50">
                                 <td class="px-6 py-4">{{ alumno.id }}</td>
                                 <td class="px-6 py-4">{{ alumno.nombre }}</td>
-                                <td class="px-6 py-4">{{ alumno.apellidos }}</td>
-                                <td class="px-6 py-4">{{ alumno.correo }}</td>
+                                <td class="px-6 py-4">{{ alumno.apaterno }}</td>
+                                <td class="px-6 py-4">{{ alumno.email }}</td>
                                 <td class="px-6 py-4 flex space-x-2">
                                     <a href="{{ url_for('alumnos.editar', id=alumno.id) }}" class="text-blue-500 hover:text-blue-700">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L14.732 5.232z"></path></svg>

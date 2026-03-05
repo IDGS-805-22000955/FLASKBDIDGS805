@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% import "_macros.html" as macros %}
+
+{% block container %}
+<div class="container mx-auto mt-12">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Curso: {{ curso.nombre }}</h1>
+        <p class="text-gray-600">Impartido por: {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-1 bg-white p-6 rounded-lg shadow-md h-fit">
+            <h3 class="text-xl font-bold mb-4">Inscribir Alumno</h3>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-4">
+                    {{ macros.render_field(form.alumno_id, class="w-full px-4 py-2 bg-gray-100 rounded-lg") }}
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">Inscribir</button>
+            </form>
+            <a href="{{ url_for('cursos.index') }}" class="block text-center mt-4 text-gray-500 hover:text-gray-800">Volver a cursos</a>
+        </div>
+
+        <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-bold mb-4">Alumnos Inscritos</h3>
+            <ul class="divide-y divide-gray-200">
+                {% for alumno in curso.alumnos %}
+                <li class="py-4 px-2 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-gray-900 dark:text-white">{{ alumno.nombre }} {{ alumno.apaterno }}</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">{{ alumno.email }}</span>
+                    </div>
+
+                    <a href="{{ url_for('cursos.desasignar_alumno', curso_id=curso.id, alumno_id=alumno.id) }}"
+                       onclick="return confirm('¿Quitar a este alumno del curso?');"
+                       class="text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 transition">
+                        Desasignar
+                    </a>
+                </li>
+                {% else %}
+                <li class="py-3 text-gray-500">No hay alumnos inscritos en este curso todavía.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

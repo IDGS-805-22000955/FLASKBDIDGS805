@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="container mx-auto px-4 mt-12 max-w-2xl">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 p-8">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">Editar Curso</h2>
+
+        <form method="POST" class="space-y-6">
+            {{ form.hidden_tag() }}
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.nombre.label.text }}</label>
+                {{ form.nombre(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white", placeholder="Ej. Matemáticas Avanzadas") }}
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.descripcion.label.text }}</label>
+                {{ form.descripcion(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white", rows="4") }}
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.maestro_id.label.text }}</label>
+                {{ form.maestro_id(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white") }}
+            </div>
+
+            <div class="flex items-center space-x-4 pt-4">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md">
+                    Actualizar Curso
+                </button>
+                <a href="{{ url_for('cursos.index') }}" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

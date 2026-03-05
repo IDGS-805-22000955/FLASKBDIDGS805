@@ -17,7 +17,7 @@ def listar():
                 nombre=form.nombre.data,
                 apellidos=form.apellidos.data,
                 especialidad=form.especialidad.data,
-                correo=form.correo.data
+                email=form.email.data
             )
             db.session.add(maestro)
             db.session.commit()

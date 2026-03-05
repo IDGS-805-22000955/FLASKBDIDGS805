@@ -38,12 +38,66 @@ DROP TABLE IF EXISTS `alumnos`;
 CREATE TABLE `alumnos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
-  `correo` varchar(150) DEFAULT NULL,
   `created_date` datetime DEFAULT NULL,
-  `apellidos` varchar(200) DEFAULT NULL,
-  `telefono` varchar(150) DEFAULT NULL,
+  `apaterno` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cursos`
+--
+
+DROP TABLE IF EXISTS `cursos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cursos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(150) NOT NULL,
+  `descripcion` text,
+  `maestro_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `maestro_id` (`maestro_id`),
+  CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`maestro_id`) REFERENCES `maestros` (`matricula`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `inscripciones`
+--
+
+DROP TABLE IF EXISTS `inscripciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inscripciones` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `alumno_id` int NOT NULL,
+  `curso_id` int NOT NULL,
+  `fecha_inscripcion` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_alumno_curso` (`alumno_id`,`curso_id`),
+  KEY `curso_id` (`curso_id`),
+  CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumnos` (`id`),
+  CONSTRAINT `inscripciones_ibfk_2` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `maestros`
+--
+
+DROP TABLE IF EXISTS `maestros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `maestros` (
+  `matricula` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellidos` varchar(50) DEFAULT NULL,
+  `especialidad` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`matricula`)
+) ENGINE=InnoDB AUTO_INCREMENT=97110868 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,4 +113,4 @@ CREATE TABLE `alumnos` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-24 21:02:18
+-- Dump completed on 2026-03-05 11:43:54

@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 
 from alumnos.routes import alumnos
 from maestros.routes import maestros
+from cursos.routes import cursos
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
@@ -16,6 +17,7 @@ csrf = CSRFProtect(app)
 
 app.register_blueprint(alumnos)
 app.register_blueprint(maestros)
+app.register_blueprint(cursos)
 
 @app.route('/')
 def index():
